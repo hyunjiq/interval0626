@@ -8,30 +8,30 @@
 // },500)
 
 //자바스크립트 경로는 css랑 다르므로 연결된 html 기준으로 처리해야 한다
-let count = 3;
-const _banner = ["/img2/4.png","/img2/cantata.png","/img2/clftjd.png","/img2/moabi.png","/img2/pokemon.png"]
+let num = 0;
+const bannerData = ["/img2/4.png","/img2/cantata.png","/img2/clftjd.png","/img2/moabi.png","/img2/pokemon.png"]
+const bannerWrap = document.querySelector(".bannerwrap");
+const bannerImg = document.querySelector("#bannerImg");
+const bannerButton = document.querySelector(".bannerwrap button");
 
-document.querySelector("#bannerImg").setAttribute("src",`${_banner[count]}`)
+function updateBanner() {
+    bannerWrap.style.background = `url(${bannerData[num]}) center no-repeat`;
+    bannerImg.setAttribute("src", bannerData[num]);
+}
 
-document.querySelector(".bannerwrap").style.background = `url(${_banner[count]}) center no-repeat`
+function startAutoBanner() {
+    return setInterval(function() {
+        num = (num + 1) % bannerData.length;
+        updateBanner();
+    }, 3000);
+}
 
-const autoBanner = setInterval(function(){
+let autoBanner = startAutoBanner();
 
-    count++;
-    count %= _banner.length;    
-    document.querySelector("#bannerImg").setAttribute("src",`${_banner[count]}`)
-    document.querySelector(".bannerwrap").style.background = `url(${_banner[count]}) center no-repeat`
-    
-},1000)
+bannerButton.addEventListener('click', function() {
+    clearInterval(autoBanner);
+    bannerButton.innerHTML = "PLAY";
+});
 
-
-
-document.querySelector(".bannerwrap button").addEventListener("click", function(){
-    
-    if(clearInterval(autoBanner)){
-        this.innerHTML = "STOP"        
-    }else{
-        this.innerHTML = "PLAY"
-    }
-
-})
+// 초기 배너 설정
+updateBanner();
