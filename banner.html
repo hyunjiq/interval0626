@@ -4,9 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .bannerwrap{
+          height: 550px;
+          transition: 0.5s;
+          position: relative;
+        }
+        .bannerwrap button{
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            width: 50px; height: 35px;
+            margin: auto;
+        }
+     </style>
 </head>
 <body>
-    <img src="./img1/3.png" id="bannerImg" alt="">
+    <h2>배경으로 변경</h2>
+    <div class="bannerwrap">
+        <button>STOP</button>
+    </div>
+    <img src="./img1/0.png" id="bannerImg" alt="">
     <script src="./setinterval.js"></script>
 </body>
 </html>

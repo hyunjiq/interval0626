@@ -9,10 +9,29 @@
 
 //자바스크립트 경로는 css랑 다르므로 연결된 html 기준으로 처리해야 한다
 let count = 3;
-setInterval(function(){
+const _banner = ["/img2/4.png","/img2/cantata.png","/img2/clftjd.png","/img2/moabi.png","/img2/pokemon.png"]
+
+document.querySelector("#bannerImg").setAttribute("src",`${_banner[count]}`)
+
+document.querySelector(".bannerwrap").style.background = `url(${_banner[count]}) center no-repeat`
+
+const autoBanner = setInterval(function(){
+
     count++;
-    count %= 5;    
-    document.querySelector("#bannerImg").setAttribute("src",`/img1/${count}.png`)
-    
+    count %= _banner.length;    
+    document.querySelector("#bannerImg").setAttribute("src",`${_banner[count]}`)
+    document.querySelector(".bannerwrap").style.background = `url(${_banner[count]}) center no-repeat`
     
 },1000)
+
+
+
+document.querySelector(".bannerwrap button").addEventListener("click", function(){
+    
+    if(clearInterval(autoBanner)){
+        this.innerHTML = "STOP"        
+    }else{
+        this.innerHTML = "PLAY"
+    }
+
+})
