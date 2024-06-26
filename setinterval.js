@@ -3,7 +3,7 @@ const navdata = ["네이버","다음","구글","아마존","깃"];
 
 setInterval(function(){
     
-    console.log(count);
+    console.log(navdata[count]);
     count++;
-    count %= 10; //count = count % 10;
+    count %= navdata.length; //count = count % 10;
 }, 500)
